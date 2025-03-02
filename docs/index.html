@@ -54,6 +54,9 @@
         body {
             font-family: Arial, sans-serif;
         }
+        .bii-logo{
+            display: none !important;
+        }
         /* Định dạng nút tròn */
         .music-button {
             position: fixed;
@@ -944,24 +947,25 @@
                 .replace(/[\n\r\t]/g, '')
                 .replace(/,(\s*[}\]])/g, '$1');
         }
-        // function parseJsonRecursively(jsonString) {
-        //     let sanitizedString = sanitizeJsonString(jsonString);
-        //     let parsed = JSON.parse(sanitizedString);
-        //     Object.keys(parsed).forEach(function (key) {
-        //         try {
-        //             let checkValue = JSON.parse(parsed[key]);
-        //             if (checkValue && checkValue.constructor === Object) {
-        //                 parsed[key] = checkValue;
-        //             }
-        //         } catch (e) {
+        function parseJsonRecursively(jsonString) {
+            let sanitizedString = sanitizeJsonString(jsonString);
+            let parsed = JSON.parse(sanitizedString);
+            Object.keys(parsed).forEach(function (key) {
+                try {
+                    let checkValue = JSON.parse(parsed[key]);
+                    if (checkValue && checkValue.constructor === Object) {
+                        parsed[key] = checkValue;
+                    }
+                } catch (e) {
 
-        //         }
-        //     });
-        //     return parsed;
-        // }
+                }
+            });
+            return parsed;
+        }
         
-        //let biicore = parseJsonRecursively('{"template_id":"644000ba4f8e0c7ddf09c709","templatePremium":true,"themeRoot":"index.html\/\/huyenvustory.iwedding.info\/templates\/template19","webroot":"index.html\/\/huyenvustory.iwedding.info","coreSite":"index.html\/\/biihappy.com","webToken":"67bdf862d17c2e6cac0d843b","isPremium":true,"bgMusic":"index.html\/\/cdn.biihappy.com\/ziiweb\/website\/67bdf862d17c2e6cac0d843b\/67beb77208beb36d97088236.mp3","alert":"[]","effect":"{\\\"type\\\":\\\"custom\\\",\\\"setting\\\":{\\\"icon\\\":\\\"index.html\\\\\/\\\\\/cdn.biihappy.com\\\\\/ziiweb\\\\\/wedding-snows\\\\\/3.png\\\",\\\"number\\\":\\\"40\\\",\\\"speed\\\":\\\"4\\\",\\\"minSize\\\":\\\"15\\\",\\\"maxSize\\\":\\\"33\\\"}}","logo":"index.html\/\/iwedding.info\/common\/imgs\/bii.png?v=20210131","url_landing_page":"index.html\/\/biihappy.com\/iwedding","isAutoPlay":true,"footer_title":"iWedding | N\u1ec1n t\u1ea3ng t\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed t\u1eeb Biihappy","footer_title_mobile":"T\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed"}');
-    </script>
+        let biicore = parseJsonRecursively('{"template_id": "644000ba4f8e0c7ddf09c709","effect": "{}","bgMusic": ""}');
+
+   </script>
     <script src="templates/template19/js/jquery-plugin-collection7327.js?v=20241222"></script>
     <!-- Template Scripts -->
     <script src="templates/template19/js/variables7327.js?v=20241222"></script>
