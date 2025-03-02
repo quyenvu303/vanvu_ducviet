@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Có Nhạc Nền</title>
+</head>
+<body>
+
+    <!-- Thẻ audio ẩn để phát nhạc -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/nhacnen.mp3" type="audio/mpeg">
+        Trình duyệt không hỗ trợ phát nhạc.
+    </audio>
+
+    <!-- Nút bật nhạc (ẩn đi nếu nhạc tự động phát được) -->
+    <button id="playButton" onclick="playMusic()" style="display:none; padding:10px 20px; font-size:16px;">
+        Bật Nhạc 🎵
+    </button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var music = document.getElementById("backgroundMusic");
+            var playButton = document.getElementById("playButton");
+
+            // Bật nhạc tự động nhưng muted để tránh bị chặn
+            music.muted = true;
+            var playPromise = music.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Nếu autoplay thành công, bật lại âm thanh
+                    music.muted = false;
+                }).catch(error => {
+                    console.log("Autoplay bị chặn:", error);
+                    // Hiện nút "Bật nhạc" nếu autoplay bị chặn
+                    playButton.style.display = "block";
+                });
+            }
+        });
+
+        // Khi người dùng bấm nút, phát nhạc thủ công
+        function playMusic() {
+            var music = document.getElementById("backgroundMusic");
+            music.muted = false;
+            music.play();
+            document.getElementById("playButton").style.display = "none"; // Ẩn nút sau khi phát
+        }
+    </script>
+
+</body>
+</html>
